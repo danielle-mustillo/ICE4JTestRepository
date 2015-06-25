@@ -78,6 +78,7 @@ public class SdpUtils {
 	@SuppressWarnings("unchecked") // jain-sdp legacy code.
 	public static void parseSDP(Agent localAgent, String sdp) throws Exception {
 		SdpFactory factory = SdpFactory.getInstance();
+		System.out.println(sdp);
 		SessionDescription sdess = factory.createSessionDescription(sdp);
 
 		for (IceMediaStream stream : localAgent.getStreams()) {
@@ -104,7 +105,7 @@ public class SdpUtils {
 			for (Attribute attribute : attributes) {
 				if (!attribute.getName().equals(CandidateAttribute.NAME))
 					continue;
-
+				System.out.println(attribute.getName() + " -> " + attribute.getValue());
 				parseCandidate(attribute, stream);
 			}
 

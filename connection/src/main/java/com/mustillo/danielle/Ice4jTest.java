@@ -93,11 +93,11 @@ public class Ice4jTest {
 		StringBuilder string = new StringBuilder();
 		String last = "";
 		do {
-			last = scanner.next();
+			last = scanner.nextLine();
 			if (last.contains("doneDONE"))
 				break;
 			else
-				string.append(last);
+				string.append(last + "\n");
 		} while (true);
 		String remoteReceived = string.toString(); // This information
 													// was grabbed
