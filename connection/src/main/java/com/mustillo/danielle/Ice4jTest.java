@@ -1,6 +1,7 @@
 package com.mustillo.danielle;
 
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -77,6 +78,8 @@ public class Ice4jTest {
 
 		try {
 			String toSend = SdpUtils.createSDPDescription(agent);
+			System.out.println("Please copy the following to the other server");
+			System.out.println(toSend);
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,15 +89,26 @@ public class Ice4jTest {
 			// ports
 
 		System.out.println("Please type in the SDP from the other client:");
-		String remoteReceived = System.console().readLine(); // This information
-																// was grabbed
-																// from the
+		Scanner scanner = new Scanner(System.in);
+		StringBuilder string = new StringBuilder();
+		String last = "";
+		do {
+			last = scanner.next();
+			if (last.contains("doneDONE"))
+				break;
+			else
+				string.append(last);
+		} while (true);
+		String remoteReceived = string.toString(); // This information
+													// was grabbed
+													// from the
 		// server, and shouldn't be empty.
 		try {
 			SdpUtils.parseSDP(agent, remoteReceived);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(0);
 		} // This will add the remote
 			// information to the agent.
 
